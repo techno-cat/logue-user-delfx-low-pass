@@ -113,10 +113,10 @@ void DELFX_PARAM(uint8_t index, int32_t value)
     const float valf = q31_to_f32(value);
     switch (index) {
     case k_user_delfx_param_time:
-        s_param.time = clipminmaxi32(0, (int32_t)(clip01f(valf) * 1024.f), 1023);
+        s_param.time = clipminmaxi32(0, (int32_t)(valf * 1024.f), 1023);
         break;
     case k_user_delfx_param_depth:
-        s_param.depth = clipminmaxi32(0, (int32_t)(clip01f(valf) * 1024.f), 1023);
+        s_param.depth = clipminmaxi32(0, (int32_t)(valf * 1024.f), 1023);
         break;
     case k_user_delfx_param_shift_depth:
         // Rescale to add notch around 0.5f
