@@ -37,7 +37,7 @@ typedef struct {
     LCWDelayBuffer *inputBuffer;
     LCWDelayBuffer *delayLine;
     LCWDelayParam param;
-    LCWFirParam hpf;
+    LCWFirParam fir;
     float currentPosition;
 } LCWDelayBlock;
 

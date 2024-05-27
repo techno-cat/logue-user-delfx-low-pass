@@ -99,8 +99,8 @@ static const float firFilterParam[] = {
 
 void LCWDelayUpdate(LCWDelayBlock *block)
 {
-    block->hpf.param = &(firFilterParam[0]);
-    block->hpf.num = LCW_FIR_TAP;
+    block->fir.param = &(firFilterParam[0]);
+    block->fir.num = LCW_FIR_TAP;
 }
 
 float LCWDelayProcess(LCWDelayBlock *block, float input)
@@ -115,6 +115,6 @@ float LCWDelayProcess(LCWDelayBlock *block, float input)
     // フィードバック付きディレイ処理
     const float ret = lookupBuffer(buf, block->currentPosition);
     inputItem(block->inputBuffer, softclip(input + block->param.fbGain * ret));
-    buf->buffer[buf->pointer] = applyFilter(block->inputBuffer, &(block->hpf));
+    buf->buffer[buf->pointer] = applyFilter(block->inputBuffer, &(block->fir));
     return ret;
 }
